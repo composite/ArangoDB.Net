@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76662BBA-4F78-41A6-81BD-A71CE29E3C49}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VelocyPack</RootNamespace>
+    <AssemblyName>VelocyPack</AssemblyName>
+    <DefaultLanguage>ko-KR</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrayIterator.cs" />
+    <Compile Include="Attributes\ExposeAttribute.cs" />
+    <Compile Include="Attributes\SerializedNameAttribute.cs" />
+    <Compile Include="Exceptions\VPackBuilderException.cs" />
+    <Compile Include="Exceptions\VPackBuilderKeyAlreadyWrittenException.cs" />
+    <Compile Include="Exceptions\VPackBuilderNeedOpenCompoundException.cs" />
+    <Compile Include="Exceptions\VPackBuilderNeedOpenObjectException.cs" />
+    <Compile Include="Exceptions\VPackBuilderNumberOutOfRangeException.cs" />
+    <Compile Include="Exceptions\VPackBuilderUnexpectedValueException.cs" />
+    <Compile Include="Exceptions\VPackException.cs" />
+    <Compile Include="Exceptions\VPackKeyTypeException.cs" />
+    <Compile Include="Exceptions\VPackNeedAttributeTranslatorException.cs" />
+    <Compile Include="Exceptions\VPackParserException.cs" />
+    <Compile Include="Exceptions\VPackValueTypeException.cs" />
+    <Compile Include="Internal\DefaultVPackBuilderOptions.cs" />
+    <Compile Include="Internal\Util\BinaryUtil.cs" />
+    <Compile Include="Internal\Util\DateUtil.cs" />
+    <Compile Include="Internal\Util\NumberUtil.cs" />
+    <Compile Include="Internal\Util\ObjectArrayUtil.cs" />
+    <Compile Include="Internal\Util\StringUtil.cs" />
+    <Compile Include="Internal\Util\ValueLengthUtil.cs" />
+    <Compile Include="Internal\Util\ValueTypeUtil.cs" />
+    <Compile Include="Internal\Value.cs" />
+    <Compile Include="Internal\VPackAttributeTranslatorImpl.cs" />
+    <Compile Include="Internal\VPackCache.cs" />
+    <Compile Include="Internal\VPackDeserializers.cs" />
+    <Compile Include="Internal\VPackInstanceCreators.cs" />
+    <Compile Include="Internal\VPackJsonRParser.cs" />
+    <Compile Include="Internal\VPackKeyMapAdapters.cs" />
+    <Compile Include="Internal\VPackSerializers.cs" />
+    <Compile Include="Migration\IEntry.cs" />
+    <Compile Include="Migration\LinkedDictionary.cs" />
+    <Compile Include="Migration\MemberAccessor.cs" />
+    <Compile Include="Migration\Util\ArrayUtil.cs" />
+    <Compile Include="Migration\Util\MemberUtil.cs" />
+    <Compile Include="Migration\Util\DateTimeUtil.cs" />
+    <Compile Include="Migration\Util\TypeUtil.cs" />
+    <Compile Include="ObjectIterator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SliceIterator.cs" />
+    <Compile Include="ValueType.cs" />
+    <Compile Include="Velocystream\Request.cs" />
+    <Compile Include="Velocystream\RequestType.cs" />
+    <Compile Include="Velocystream\Response.cs" />
+    <Compile Include="VPack.cs" />
+    <Compile Include="VPackAttributeTranslator.cs" />
+    <Compile Include="VPackBuilder.cs" />
+    <Compile Include="VPackDeserializationContext.cs" />
+    <Compile Include="VPackDeserializer.cs" />
+    <Compile Include="VPackFieldNamingStrategy.cs" />
+    <Compile Include="VPackInstanceCreator.cs" />
+    <Compile Include="VPackJsonDeserializer.cs" />
+    <Compile Include="VPackKeyMapAdapter.cs" />
+    <Compile Include="VPackParser.cs" />
+    <Compile Include="VPackSerializationContext.cs" />
+    <Compile Include="VPackSerializer.cs" />
+    <Compile Include="VPackSlice.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

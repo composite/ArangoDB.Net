@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "VelocyPack/1.0.0": {
+      "type": "project",
+      "framework": ".NETStandard,Version=v1.1",
+      "compile": {
+        "bin/Debug/VelocyPack.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/VelocyPack.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/VelocyPack.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
