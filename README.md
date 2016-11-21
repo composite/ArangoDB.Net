@@ -1,5 +1,5 @@
 # ArangoDB.Net
-(WIP) ArangoDB Client for .NET with VelocyPack
+**(WIP)** ArangoDB Client for .NET with VelocyPack
 
 Based from official [arangodb/arangodb-java-driver](https://github.com/arangodb/arangodb-java-driver)
 
@@ -19,6 +19,8 @@ for using `VelocyStream` protocol instead of `HTTP`.
 
 - `VelocyPack` must be passed all unit test!<br>
   (11 passed / 12 failed / 23 implemented / 262 all tests in velocystream)
+- `Nullable<T>`, `DateTimeOffset` and other some major types support.
+- Resolve between Java `byte[]` and .NET `byte[]` migration issue, by `VelocyStream` spec.
 - `async` and `Linq` support.
 
 ## Why did you open source with this?
