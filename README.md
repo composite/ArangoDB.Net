@@ -36,6 +36,8 @@ yes. I'm working on .NET standard environment. but I have a plan that makes supp
 - Xamarin (but I hate Mono.)
 - No plan for silverlight.
 
+*(NOTE:VelocyPack only. not included ArangoDB.NET with supporting env yet.)*
+
 ## License
 
 Same as `arangodb/arangodb-java-driver`, Apache License 2.0
