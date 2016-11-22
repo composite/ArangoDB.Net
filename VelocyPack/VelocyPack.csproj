@@ -75,6 +75,7 @@
     <Compile Include="Migration\Util\ArrayUtil.cs" />
     <Compile Include="Migration\Util\MemberUtil.cs" />
     <Compile Include="Migration\Util\DateTimeUtil.cs" />
+    <Compile Include="Migration\Util\NumberUtil.cs" />
     <Compile Include="Migration\Util\TypeUtil.cs" />
     <Compile Include="ObjectIterator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

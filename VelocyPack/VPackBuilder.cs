@@ -22,6 +22,7 @@ namespace VelocyPack
     using System;
     using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System.Text;
 
     using VelocyPack.Exceptions;
@@ -714,7 +715,7 @@ namespace VelocyPack
                 case ValueType.INT:
                     {
                         int length;
-                        if (clazz == typeof(long))
+                        if (clazz == typeof(long) || clazz == typeof(BigInteger))
                         {
                             this.Add(unchecked((byte)0x27));
                             length = LONG_BYTES;
@@ -766,7 +767,7 @@ namespace VelocyPack
                                       typeof(BigInteger));
                         }
 
-                        this.AppendUInt((uint)vUInt);
+                        this.AppendUInt(vUInt);
                         break;
                     }
 
@@ -817,7 +818,7 @@ namespace VelocyPack
             }
         }
 
-        private void AppendUInt(uint value)
+        private void AppendUInt(BigInteger value)
         {
             this.Add(unchecked((byte)0x2f));
             this.Append(value, LONG_BYTES);
@@ -835,9 +836,10 @@ namespace VelocyPack
         private void Append(BigInteger value, int length)
         {
             this.EnsureCapacity(this.size + length);
+            long lvalue = Migration.Util.NumberUtil.ToLongUnchecked(value);
             for (int i = length - 1; i >= 0; i--)
             {
-                this.AddUnchecked(unchecked((byte)(value >> (length - i - 1 << 3))));
+                this.AddUnchecked(unchecked((byte)(lvalue >> (length - i - 1 << 3))));
             }
         }
 

@@ -29,6 +29,9 @@ namespace VelocyPack
     using VelocyPack.Internal.Util;
     using VelocyPack.Migration.Util;
 
+    using NumberUtil = VelocyPack.Internal.Util.NumberUtil;
+    using ArrayUtil = Migration.Util.ArrayUtil;
+
     /// <author>Mark - mark at arangodb.com</author>
     public class VPackSlice
     {
@@ -1185,7 +1188,7 @@ namespace VelocyPack
 
         protected internal virtual byte[] GetRawVPack()
         {
-            return this.vpack.CopyOfRange(this.start, this.start + this.ByteSize);
+            return ArrayUtil.CopyOfRange(this.vpack, this.start, this.start + this.ByteSize);
         }
 
         public override string ToString()
