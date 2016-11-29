@@ -276,17 +276,19 @@ namespace VelocyPack
 
         private static readonly IAppender<VPackSlice> VPACK = new _Appender_202();
 
-        private byte[] buffer;
+        private byte[] buffer; // Here we collect the result
 
         private int size;
 
-        private readonly IList<int> stack;
+        private readonly IList<int> stack; // Start positions of open
+                                           // objects/arrays
 
-        private readonly IDictionary<int, IList<int>> index;
+        private readonly IDictionary<int, IList<int>> index; // Indices for starts
+                                                             // of
+                                                             // subindex
 
-        private bool keyWritten;
-
-        private readonly IBuilderOptions options;
+        private bool keyWritten; // indicates that in the current object the key
+                                 // has been written but the value not yet
 
         public VPackBuilder()
             : this(new DefaultVPackBuilderOptions())
@@ -295,25 +297,14 @@ namespace VelocyPack
 
         public VPackBuilder(IBuilderOptions options)
         {
-            // Here we collect the result
-            // Start positions of open
-            // objects/arrays
-            // Indices for starts
-            // of
-            // subindex
-            // indicates that in the current object the key
-            // has been written but the value not yet
-            this.options = options;
+            this.Options = options;
             this.size = 0;
             this.buffer = new byte[10];
             this.stack = new List<int>();
             this.index = new Dictionary<int, IList<int>>();
         }
 
-        public virtual IBuilderOptions GetOptions()
-        {
-            return this.options;
-        }
+        public virtual IBuilderOptions Options { get; }
 
         private void Add(byte b)
         {
@@ -702,7 +693,7 @@ namespace VelocyPack
 
                 case ValueType.SMALLINT:
                     {
-                        long vSmallInt = item.GetLong();
+                        long vSmallInt = item.LongValue;
                         if (vSmallInt < -6 || vSmallInt > 9)
                         {
                             throw new VPackBuilderNumberOutOfRangeException(ValueType.SMALLINT);
@@ -730,7 +721,7 @@ namespace VelocyPack
                                       typeof(short));
                         }
 
-                        this.Append((long)item.GetNumber(), length);
+                        this.Append((long)item.NumberValue, length);
                         break;
                     }
 
@@ -739,13 +730,13 @@ namespace VelocyPack
                         BigInteger vUInt;
                         if (clazz == typeof(long))
                         {
-                            vUInt = new BigInteger(item.GetLong());
+                            vUInt = new BigInteger(item.LongValue);
                         }
                         else
                         {
                             if (clazz == typeof(BigInteger))
                             {
-                                vUInt = item.GetBigInteger();
+                                vUInt = item.BigIntegerValue;
                             }
                             else
                             {
@@ -977,8 +968,8 @@ namespace VelocyPack
                 return this.CloseEmptyArrayOrObject(tos, isArray);
             }
 
-            if (head == 0x13 || head == 0x14 || (head == 0x06 && this.options.IsBuildUnindexedArrays())
-                || head == 0x0b && (this.options.IsBuildUnindexedObjects() || @in.Count == 1))
+            if (head == 0x13 || head == 0x14 || (head == 0x06 && this.Options.IsBuildUnindexedArrays())
+                || head == 0x0b && (this.Options.IsBuildUnindexedObjects() || @in.Count == 1))
             {
                 if (this.CloseCompactArrayOrObject(tos, isArray, @in))
                 {

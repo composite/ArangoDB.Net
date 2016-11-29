@@ -96,19 +96,30 @@ namespace VelocyPack.Internal
 
         public virtual bool IsUnindexed { get; }
 
-        public virtual decimal GetNumber()
+        public virtual decimal NumberValue
         {
-            return (decimal)this.value;
+            get
+            {
+                if (this.value is BigInteger) return (decimal)(BigInteger)this.value;
+                return Convert.ToDecimal(this.value);
+            }
         }
 
-        public virtual long GetLong()
+        public virtual long LongValue
         {
-            return (long)this.value;
+            get
+            {
+                if (this.value is BigInteger) return (long)(BigInteger)this.value;
+                return Convert.ToInt64(this.value);
+            }
         }
 
-        public virtual BigInteger GetBigInteger()
+        public virtual BigInteger BigIntegerValue
         {
-            return (BigInteger)this.value;
+            get
+            {
+                return (BigInteger)this.value;
+            }
         }
     }
 }
